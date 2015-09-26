@@ -15,10 +15,6 @@
         {
             "name": "library",
             "targetType": "library"
-        },
-        {
-            "name": "unittest",
-            "targetType": "executable"
         }
     ]
 }
