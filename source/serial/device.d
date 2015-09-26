@@ -56,6 +56,13 @@ version(Posix)
     import core.sys.posix.unistd;
     version(linux) {
       import core.sys.linux.termios;
+      enum B7200   = 7200;
+      enum B14400  = 14400;
+      enum B28800  = 28800;
+      enum B57600  = 57600;
+      enum B76800  = 76800;
+      enum B115200 = 115200;
+      enum B230400 = 230400;
     }
     else version(OSX)
     {
@@ -936,7 +943,7 @@ class SerialPort
             timeval timeout;
             timeout.tv_sec = cast(int)(totalReadTimeout.total!"seconds");
             enum US_PER_MS = 1000;
-            timeout.tv_usec = cast(int)(totalReadTimeout.split().msecs * US_PER_MS);
+            timeout.tv_usec = cast(int)((totalReadTimeout.total!"msecs")*US_PER_MS);
             
             auto rv = select(handle + 1, &selectSet, null, null, &timeout);
             if(rv == -1)
