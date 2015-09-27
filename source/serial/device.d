@@ -56,15 +56,24 @@ version(Posix)
     import core.sys.posix.unistd;
     version(linux) {
       import core.sys.linux.termios;
-      enum B7200   = 7200;
+      enum B0 = 0;
+      enum B50 = 50;
+      enum B75 = 75;
+      enum B110 = 110;
+      enum B134 = 134;
+      enum B150 = 150;
+      enum B200 = 200;
+      enum B300 = 300;
+      enum B600 = 600;
+      enum B1200 = 1200;
+      enum B1800 = 1800;
+      enum B2400 = 2400;
+      enum B4800 = 4800;
       enum B9600 = 9600;
-      enum B14400  = 14400;
       enum B19200 = 19200;
-      enum B28800  = 28800;
+      enum B38400  = 38400;
       enum B57600  = 57600;
-      enum B76800  = 76800;
       enum B115200 = 115200;
-      enum B230400 = 230400;
     }
     else version(OSX)
     {
@@ -102,10 +111,17 @@ version(Windows)
 */
 enum BaudRate : uint
 {
+    BR_0      = 0,
+    BR_50     = 50,
+    BR_75     = 75,
     BR_110    = 110,
+    BR_134    = 134,
+    BR_150    = 150,
+    BR_200    = 200,
     BR_300    = 300,
     BR_600    = 600,
     BR_1200   = 1200,
+    BR_1800   = 1800,
     BR_2400   = 2400,
     BR_4800   = 4800,
     BR_9600   = 9600,
@@ -1012,13 +1028,21 @@ class SerialPort
             shared static this()
             {
                 posixBRTable = [
+                    BaudRate.BR_0: B0,
+                    BaudRate.BR_50: B50,
+                    BaudRate.BR_75: B75,
                     BaudRate.BR_110 : B110,
+                    BaudRate.BR_134: B134,
+                    BaudRate.BR_150: B150,
+                    BaudRate.BR_200: B200,
                     BaudRate.BR_300 : B300,
                     BaudRate.BR_600 : B600,
                     BaudRate.BR_1200 : B1200,
+                    BaudRate.BR_1800 : B1800,
                     BaudRate.BR_2400 : B2400,
                     BaudRate.BR_4800 : B4800,
                     BaudRate.BR_9600 : B9600,
+                    BaudRate.BR_19200 : B19200,
                     BaudRate.BR_38400 : B38400,
                     BaudRate.BR_57600 : B57600,
                     BaudRate.BR_115200 : B115200
@@ -1090,13 +1114,21 @@ class SerialPort
             version(linux)
             {
                 baudRatetoUint = [
+                    B0 : BaudRate.BR_0,
+                    B50: BaudRate.BR_50,
+                    B75: BaudRate.BR_75,
                     B110 : BaudRate.BR_110,
+                    B134 : BaudRate.BR_134,
+                    B150: BaudRate.BR_150,
+                    B200: BaudRate.BR_200,
                     B300 : BaudRate.BR_300,
                     B600 : BaudRate.BR_600,
                     B1200 : BaudRate.BR_1200,
+                    B1800 : BaudRate.BR_1800,
                     B2400 : BaudRate.BR_2400,
                     B4800 : BaudRate.BR_4800,
                     B9600 : BaudRate.BR_9600,
+                    B19200 : BaudRate.BR_19200,
                     B38400 : BaudRate.BR_38400,
                     B57600 : BaudRate.BR_57600,
                     B115200 : BaudRate.BR_115200,
