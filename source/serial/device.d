@@ -57,7 +57,9 @@ version(Posix)
     version(linux) {
       import core.sys.linux.termios;
       enum B7200   = 7200;
+      enum B9600 = 9600;
       enum B14400  = 14400;
+      enum B19200 = 19200;
       enum B28800  = 28800;
       enum B57600  = 57600;
       enum B76800  = 76800;
